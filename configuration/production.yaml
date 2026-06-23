@@ -1,0 +1,9 @@
+# Produktion — Override über base.yaml. Strengere Defaults.
+application:
+  host: "0.0.0.0"
+
+database:
+  require_ssl: true
+
+telemetry:
+  log_level: "info"

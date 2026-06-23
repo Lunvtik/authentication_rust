@@ -1,0 +1,9 @@
+/target
+.env
+*.log
+lunas_docs/
+TODO_auth.md
+/docs/
+.claude
+docs
+referenz

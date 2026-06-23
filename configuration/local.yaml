@@ -1,0 +1,9 @@
+# Lokale Entwicklung — Override über base.yaml. Podman-Container auf localhost.
+application:
+  host: "127.0.0.1"
+
+database:
+  require_ssl: false
+
+telemetry:
+  log_level: "debug"
