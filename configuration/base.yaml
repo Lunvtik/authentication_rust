@@ -1,0 +1,27 @@
+# Basis-Konfiguration (gilt für alle Umgebungen).
+# KEINE Secrets hier — Passwörter/Session-Secret kommen aus der Umgebung (.env).
+# Env-Override-Schema (config-Crate): APP_<SEKTION>__<FELD>, z.B. APP_DATABASE__PASSWORD.
+
+application:
+  host: "127.0.0.1"
+  port: 8000
+
+database:
+  host: "127.0.0.1"
+  port: 5432
+  name: "auth_shop"
+  username: "auth_app"
+  require_ssl: false
+  # password: kommt aus der Umgebung (APP_DATABASE__PASSWORD)
+
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  # password: kommt aus der Umgebung (APP_REDIS__PASSWORD), falls gesetzt
+
+session:
+  ttl_seconds: 86400
+  # secret: kommt aus der Umgebung (APP_SESSION__SECRET), mind. 64 zufällige Bytes
+
+telemetry:
+  log_level: "info"

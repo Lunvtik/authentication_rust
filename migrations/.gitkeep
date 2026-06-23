@@ -1,0 +1,3 @@
+Platzhalter, damit der leere migrations-Ordner versioniert wird.
+Die erste Migration (users-Tabelle) kommt mit dem UserStore-Feature
+(siehe docs/checkliste_a_kern.md -> UserStore).

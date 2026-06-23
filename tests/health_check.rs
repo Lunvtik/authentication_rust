@@ -1,0 +1,28 @@
+use std::net::TcpListener;
+
+use auth_rust::common::db::get_connection_pool;
+
+mod common;
+
+fn spawn_app() -> String {
+    let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind random port");
+    let port = listener.local_addr().unwrap().port();
+    let pool = get_connection_pool(&common::test_db_settings());
+    let server = auth_rust::startup::run(listener, pool).expect("Failed to bind address");
+    let _server = tokio::spawn(server);
+    format!("http://127.0.0.1:{}", port)
+}
+
+#[tokio::test]
+async fn health_check_works() {
+    let address = spawn_app();
+    let client = reqwest::Client::new();
+    let response = client
+        .get(format!("{}/health_check", address))
+        .send()
+        .await
+        .expect("Failed to execute request.");
+
+    assert!(response.status().is_success());
+    assert_eq!(Some(0), response.content_length());
+}
